@@ -1,0 +1,15 @@
+services:
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - SERVICES=lambda,iam,s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack_data
+    volumes:
+      - "/tmp/localstack_data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
